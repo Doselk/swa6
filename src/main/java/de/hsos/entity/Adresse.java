@@ -42,6 +42,15 @@ public class Adresse {
         return plz;
     }
 
+    public String getOrt() {
+        return ort;
+    }
+
+    public int getHausnummer() {
+        return hausnummer;
+    }
+
+
 
 
 }
