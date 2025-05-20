@@ -1,11 +1,13 @@
 package de.hsos.entity;
 
+import jakarta.enterprise.inject.Vetoed;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@Vetoed
 public class Adresse {
 
     @Id
