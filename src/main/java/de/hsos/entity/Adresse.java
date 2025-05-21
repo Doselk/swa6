@@ -1,5 +1,7 @@
 package de.hsos.entity;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Vetoed;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,11 @@ import jakarta.persistence.Id;
 @Entity
 @Vetoed
 public class Adresse {
+
+    @PostConstruct
+    void init() {
+        System.out.println("🧩 Neue Dependent-Instanz Adresse erzeugt: " + id);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

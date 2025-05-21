@@ -1,11 +1,18 @@
 package de.hsos.entity;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Vetoed;
 import jakarta.persistence.*;
 
 @Entity
 @Vetoed
 public class Kunde {
+
+    @PostConstruct
+    void init() {
+        System.out.println("🧩 Neue Dependent-Instanz Kunde erzeugt: " + id);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

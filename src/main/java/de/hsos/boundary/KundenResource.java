@@ -4,7 +4,9 @@ import de.hsos.boundary.dto.AdresseDTO;
 import de.hsos.boundary.dto.KundeDTO;
 import de.hsos.boundary.dto.NeukundeDTO;
 import de.hsos.control.KundenVerwalter;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -13,15 +15,22 @@ import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import java.util.Collection;
+import java.util.UUID;
 
 @Path("kunden")
-@ApplicationScoped
+@RequestScoped
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Transactional
 public class KundenResource {
     @Inject
     KundenVerwalter kundenVerwalter;
+
+    private final String instanzId = UUID.randomUUID().toString();
+    @PostConstruct
+    void init() {
+        System.out.println("👤 KundenResource initialisiert mit ID: " + instanzId);
+    }
 
     @GET
     @Operation(summary = "Alle Kunden abrufen")

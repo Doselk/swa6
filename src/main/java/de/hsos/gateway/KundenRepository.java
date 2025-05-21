@@ -3,7 +3,9 @@ package de.hsos.gateway;
 import de.hsos.control.KundenVerwalter;
 import de.hsos.entity.Adresse;
 import de.hsos.entity.Kunde;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -12,11 +14,18 @@ import org.jboss.logging.Logger;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @ApplicationScoped
 public class KundenRepository implements KundenVerwalter {
 
     private static final Logger LOG = Logger.getLogger(KundenRepository.class);
+
+    private final String instanzId = UUID.randomUUID().toString();
+    @PostConstruct
+    void init() {
+        System.out.println("🛠 KundenRepository initialisiert mit ID: " + instanzId);
+    }
 
     @Inject
     EntityManager em;
